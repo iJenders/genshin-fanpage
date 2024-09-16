@@ -1,59 +1,116 @@
 <script setup>
+import axios from 'axios';
+import { ref, onMounted, computed } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
+import { useRouter } from 'vue-router';
 import NationCard from '@/components/NationCard.vue';
+
+const route = useRouter();
 
 const regions = [
   {
     name: "Mondstadt",
     motto: "La Nación de la Libertad",
-    imageUrl: "src/assets/img/Mondstadt.jpg",
+    imageUrl: "/src/img/Mondstadt.jpg",
     element: "anemo",
     elementColor: "#74c2a8",
   },
   {
     name: "Liyue",
     motto: "La Nación de los Contratos",
-    imageUrl: "src/assets/img/Liyue.jpg",
+    imageUrl: "/src/img/Liyue.jpg",
     element: "geo",
     elementColor: "#fab632",
   },
   {
     name: "Inazuma",
     motto: "La Nación de la Eternidad",
-    imageUrl: "src/assets/img/Inazuma.jpg",
+    imageUrl: "/src/img/Inazuma.jpg",
     element: "electro",
     elementColor: "#af8ec1",
   },
   {
     name: "Sumeru",
     motto: "La Nación de la Sabiduría",
-    imageUrl: "src/assets/img/Sumeru.jpg",
+    imageUrl: "/src/img/Sumeru.jpg",
     element: "dendro",
     elementColor: "#a4cc3c",
   },
   {
     name: "Fontaine",
     motto: "...",
-    imageUrl: "src/assets/img/Fontaine.jpg",
+    imageUrl: "/src/img/Fontaine.jpg",
     element: "hydro",
     elementColor: "#4cc2f1",
   },
   {
     name: "Natlan",
     motto: "Nación de la guerra",
-    imageUrl: "src/assets/img/Natlan.jpg",
+    imageUrl: "/src/img/Natlan.jpg",
     element: "pyro",
     elementColor: "#ef7938",
   },
   {
     name: "???",
     motto: "...",
-    imageUrl: "src/assets/img/ComingSoon.jpg",
+    imageUrl: "/src/img/ComingSoon.jpg",
     element: "cryo",
     elementColor: "#9fd6e3",
     comingSoon: true
   }
 ]
+const videosId = ['rAIyiO_Awus', 'DoOPaMEwflU', 'uKr_9h79yf0']
+
+const videos = ref([
+  {
+    title: "",
+    url: "",
+    thumbnail: ""
+  }
+]);
+const currentVideo = ref(0);
+
+const currentVideoUrl = computed(() => videosId[currentVideo.value]);
+const currentVideoCssUrl = computed(() => `url(${videos.value[currentVideo.value].thumbnail})`);
+const playingVideo = computed(() => route.currentRoute.value.hash == '#video');
+
+const togglePlayingVideo = () => {
+  if (playingVideo.value) {
+    route.push({ hash: '' })
+  } else {
+    route.push({ hash: '#video' })
+  }
+}
+const refreshVideos = () => {
+  videosId.forEach(async (videoId, index) => {
+    let object = {
+      title: "",
+      url: "",
+      thumbnail: ""
+    }
+
+    await axios.get(`https://noembed.com/embed?url=https://www.youtube.com/watch?v=${videoId}`)
+      .then(response => {
+        object.title = response.data.title;
+        object.url = response.data.url
+        object.thumbnail = `https://i3.ytimg.com/vi/${videoId}/maxresdefault.jpg`
+        if (index == 0) {
+          videos.value[0] = object;
+        } else {
+          videos.value.push(object);
+        }
+      }).catch(error => {
+        console.log(error);
+      });
+  });
+}
+const refreshCurrentVideo = (value) => {
+  currentVideo.value = value;
+}
+
+onMounted(() => {
+  refreshVideos();
+});
 </script>
 
 <template>
@@ -63,7 +120,7 @@ const regions = [
         <div class="Background"></div>
         <div class="Void"></div>
         <div class="Title">
-          <img src="../assets/img/GenshinLogo.png" alt="GenshinLogo">
+          <img src="/src/img/GenshinLogo.png" alt="GenshinLogo">
         </div>
         <div class="Foot">
           <span>Step Into a Vast Magical World of Adventure</span>
@@ -80,6 +137,37 @@ const regions = [
                 :element-color="item.elementColor" :coming-soon="item.comingSoon" />
             </swiper-slide>
           </swiper>
+        </div>
+      </div>
+      <div class="Videos">
+        <div class="VideoInfo">
+          <div class="Title">
+            <p>{{ videos[currentVideo].title }}</p>
+          </div>
+          <div class="PlayButton" @click="() => { togglePlayingVideo() }">
+            <i class="fa-regular fa-circle-play"></i>
+            <i>Play video</i>
+          </div>
+          <a href="https://www.youtube.com/@GenshinImpact" target="_blank">Explore more</a>
+        </div>
+        <div class="VideoList">
+          <div class="Video" v-for="(video, index) in videos" :key="index" @mouseenter="refreshCurrentVideo(index)"
+            @click="() => { togglePlayingVideo() }">
+            <div class="VideoBackground">
+              <img draggable="false" :src="video.thumbnail" :alt="video.title">
+            </div>
+            <div class="PlayButton">
+              <i class="fa-regular fa-circle-play"></i>
+            </div>
+          </div>
+        </div>
+        <div class="Background"></div>
+        <div class="VideoPlayer" v-if="playingVideo" @click="togglePlayingVideo">
+          <iframe width="853" height="480" :src="`https://www.youtube.com/embed/${currentVideoUrl}`"
+            title="Miscelánea de Genshin Impact - Kinich: Todo tiene su recompensa #Kinich #GenshinImpact"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
       </div>
     </div>
@@ -112,7 +200,7 @@ const regions = [
   width: 100%;
   height: 100%;
 
-  background: url(src/assets/img/HomeBackground.jpg);
+  background: url('/src/img/HomeBackground.jpg');
   background-size: cover;
   background-position-x: 25%;
 }
@@ -120,11 +208,11 @@ const regions = [
 .Landing .Background::after {
   content: '';
   position: absolute;
-  left: 0;
+  bottom: 0;
   right: 0;
 
   width: 100%;
-  height: 100%;
+  height: 50%;
 
   background: linear-gradient(0deg, #192229, transparent);
   background-size: cover;
@@ -150,7 +238,6 @@ const regions = [
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 
   font-family: "Zhcn", system-ui;
   font-size: 24px;
@@ -191,5 +278,229 @@ const regions = [
 
 .Regions .swiper-slide {
   width: fit-content;
+}
+
+.Videos {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  width: 100%;
+  min-height: 580px;
+  padding: 0 128px;
+}
+
+.Videos::before {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+
+  width: 100%;
+  height: 10%;
+
+  background: linear-gradient(180deg, #192229, transparent);
+  background-size: cover;
+  background-position-x: 25%;
+}
+
+.VideoInfo {
+  position: relative;
+  z-index: 2;
+
+  width: 60%;
+  padding: 20px;
+  margin-right: auto;
+}
+
+.VideoInfo .Title {
+  width: 100%;
+  padding-bottom: 32px;
+
+  font-family: "Nanum Gothic Coding", monospace;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 32px;
+  text-align: left;
+
+  color: #fff;
+}
+
+.VideoInfo .PlayButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  width: fit-content;
+}
+
+.VideoInfo .PlayButton i {
+  color: #ffffff;
+  font-size: 64px;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.VideoInfo .PlayButton i:nth-child(2) {
+  font-family: "Zhcn", system-ui;
+  font-size: 32px;
+}
+
+.VideoInfo .PlayButton:hover i {
+  color: #ffb89c;
+}
+
+.VideoInfo a {
+  display: inline-block;
+
+  margin-top: 32px;
+
+  font-family: "Nanum Gothic Coding", monospace;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 20px;
+  text-align: left;
+
+  color: #fff;
+
+  transition: 0.2s;
+}
+
+.VideoInfo a:hover {
+  color: #ffb89c;
+}
+
+.VideoList {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.VideoList .Video {
+  position: relative;
+
+  width: 100%;
+  border-radius: 5px;
+
+  cursor: pointer;
+
+  overflow: hidden;
+}
+
+.VideoList .Video .VideoBackground {
+  height: 160px;
+  aspect-ratio: 16/10;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: 0.2s;
+}
+
+.VideoList .Video:hover .VideoBackground {
+  filter: brightness(0.5);
+}
+
+.VideoList .Video .VideoBackground img {
+  width: 100%;
+  height: 100%;
+
+  object-position: center;
+  object-fit: cover;
+
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.VideoList .Video .PlayButton {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  filter: opacity(0);
+  transition: 0.2s;
+}
+
+.VideoList .Video:hover .PlayButton {
+  filter: opacity(1);
+}
+
+.VideoList .Video .PlayButton i {
+  color: #ffffff;
+  font-size: 48px;
+  transition: 0.2s;
+}
+
+.VideoList .Video:hover .PlayButton i {
+  color: #ffb89c;
+}
+
+.Videos .Background {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background: v-bind(currentVideoCssUrl);
+  background-position: center;
+  background-size: cover;
+
+  transition: background-image 0.2s ease-in-out;
+  filter: brightness(0.5);
+}
+
+.Videos .VideoPlayer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 4;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100vh;
+
+  background: #000000aa;
+}
+
+.Videos .VideoPlayer iframe {
+  width: 80%;
+}
+
+@media (max-width: 920px) {
+  .Videos {
+    padding: 20px;
+  }
+
+  .Videos .VideoInfo {
+    width: 100%;
+  }
+
+  .Videos .VideoList {
+    display: none;
+  }
 }
 </style>

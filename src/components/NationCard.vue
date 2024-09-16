@@ -46,7 +46,7 @@ const translucentColor = ref(props.elementColor + "");
             </div>
         </div>
         <div class="Element">
-            <img :src="`src/assets/img/${props.element}.webp`" :alt="props.element" width="80">
+            <img :src="`/src/img/${props.element}.webp`" :alt="props.element" width="80">
         </div>
     </div>
 </template>

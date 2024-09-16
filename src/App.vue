@@ -21,7 +21,7 @@ import { RouterLink, RouterView } from 'vue-router'
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&family=Protest+Guerrilla&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @font-face {
   font-family: "ZhCn";
-  src: url('src/assets/fonts/zh-cn.ttf');
+  src: url('/src/fonts/zh-cn.ttf');
 };
 
 * {
