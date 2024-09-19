@@ -6,6 +6,14 @@ This is a Genshin Impact game fanmade page made by myself to improve my knowledg
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
+## Currently used dependencies
+
+- VueJs 3.4.29
+- Vue Router 4.3.3
+- Pinia 2.1.7
+- Swiper Js 11.1.14
+- Axios 1.7.7
+
 ## Project Setup
 
 ### Clone project
