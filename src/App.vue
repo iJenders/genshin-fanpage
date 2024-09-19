@@ -21,7 +21,8 @@ import { RouterLink, RouterView } from 'vue-router'
       <div class="Info">
         <h2>Information</h2>
         <p>This isn't an Genshin Impact official webpage and it is maintained by iJenders</p>
-        <p>Genshin Impact is a Cognosphere brand.</p>
+        <p>Genshin Impact™ is a trademark of Cognosphere. Game content and materials are trademarks and copyrights of
+          their respective publisher and its licensors.</p>
         <p>Copyright © COGNOSPHERE. All Rights Reserved.</p>
       </div>
       <div class="Links">
@@ -73,6 +74,10 @@ import { RouterLink, RouterView } from 'vue-router'
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body{
+  background: #000000;
 }
 
 header {
