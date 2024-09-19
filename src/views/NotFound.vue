@@ -57,7 +57,7 @@ const route = useRoute();
 
     content: '';
 
-    background: url('src/img/Miko.webp');
+    background: url('/src/img/Miko.webp');
     background-size: cover;
 
     height: 70%;
