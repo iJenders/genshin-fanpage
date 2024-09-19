@@ -1,14 +1,10 @@
 # genshin-fanpage
 
-This template should help get you started developing with Vue 3 in Vite.
+This is a Genshin Impact game fanmade page made by myself to improve my knowledge in Vue Js framework.
 
 ## Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
 
 ## Project Setup
 
