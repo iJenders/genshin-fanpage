@@ -8,6 +8,12 @@ This is a Genshin Impact game fanmade page made by myself to improve my knowledg
 
 ## Project Setup
 
+### Clone project
+```sh
+git clone https://github.com/iJenders/genshin-fanpage.git
+```
+
+### Install dependencies
 ```sh
 npm install
 ```
