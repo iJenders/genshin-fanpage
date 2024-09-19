@@ -114,7 +114,7 @@ onMounted(() => {
 <template>
   <div class="HomeViewContainer">
     <div class="HomeView">
-      <div class="Landing">
+      <section class="Landing">
         <div class="Background"></div>
         <div class="Void"></div>
         <div class="Title">
@@ -123,8 +123,8 @@ onMounted(() => {
         <div class="Foot">
           <span>Step Into a Vast Magical World of Adventure</span>
         </div>
-      </div>
-      <div class="Regions">
+      </section>
+      <section class="Regions">
         <div class="Title">
           <span>Seven nations to explore</span>
         </div>
@@ -136,8 +136,8 @@ onMounted(() => {
             </swiper-slide>
           </swiper>
         </div>
-      </div>
-      <div class="Videos" v-if="loadedVideos">
+      </section>
+      <section class="Videos" v-if="loadedVideos">
         <div class="VideoInfo">
           <div class="Title">
             <p>{{ videos[currentVideo].title }}</p>
@@ -167,7 +167,7 @@ onMounted(() => {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
-      </div>
+      </section>
     </div>
   </div>
 </template>
