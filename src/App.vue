@@ -80,6 +80,7 @@ header {
   z-index: 10;
 
   width: 100%;
+  backdrop-filter: blur(5px) brightness(0.95);
 }
 
 header .Wrapper nav {
@@ -116,6 +117,7 @@ footer::before {
   content: '';
   position: absolute;
   top: -8px;
+  z-index: 10;
 
   width: 100%;
   height: 8px;
