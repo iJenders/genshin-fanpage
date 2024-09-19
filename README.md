@@ -12,6 +12,7 @@ This is a Genshin Impact game fanmade page made by myself to improve my knowledg
 ```sh
 git clone https://github.com/iJenders/genshin-fanpage.git
 ```
+[Or download repo here!](https://github.com/iJenders/genshin-fanpage/archive/refs/heads/main.zip)
 
 ### Install dependencies
 ```sh
