@@ -20,7 +20,7 @@ import { RouterLink, RouterView } from 'vue-router'
     <div class="FooterContent">
       <div class="Info">
         <h2>Information</h2>
-        <p>This isn't an Genshin Impact official webpage.</p>
+        <p>This isn't an Genshin Impact official webpage and it is maintained by iJenders</p>
         <p>Genshin Impact is a Cognosphere brand.</p>
         <p>Copyright © COGNOSPHERE. All Rights Reserved.</p>
       </div>

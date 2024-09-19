@@ -46,7 +46,7 @@ const translucentColor = ref(props.elementColor + "");
             </div>
         </div>
         <div class="Element">
-            <img :src="`/src/img/${props.element}.webp`" :alt="props.element" width="80">
+            <img :src="`/src/img/ElementLogo-${props.element}.webp`" :alt="props.element" width="80">
         </div>
     </div>
 </template>
@@ -73,12 +73,14 @@ const translucentColor = ref(props.elementColor + "");
     width: 100%;
     height: 100%;
 
-    filter: saturate(0.5);
+    filter: saturate(0.5) blur(1px);
+    transform: scale(1.1);
     transition: 0.2s;
 }
 
 .NationCard:hover .BackgroundImg {
     filter: saturate(1);
+    transform: scale(1);
 }
 
 .BackgroundImg img {
