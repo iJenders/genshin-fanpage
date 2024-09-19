@@ -1,16 +1,29 @@
 # genshin-fanpage
 
-This template should help get you started developing with Vue 3 in Vite.
+This is a Genshin Impact game fanmade page made by myself to improve my knowledge in Vue Js framework.
 
 ## Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
-## Customize configuration
+## Currently used dependencies
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+- VueJs 3.4.29
+- Vue Router 4.3.3
+- Pinia 2.1.7
+- Swiper Js 11.1.14
+- Axios 1.7.7
 
 ## Project Setup
+
+### Clone project
+
+```sh
+git clone https://github.com/iJenders/genshin-fanpage.git
+```
+[Or download repo here!](https://github.com/iJenders/genshin-fanpage/archive/refs/heads/main.zip) (don't forget to extract it)
+
+### Install dependencies
 
 ```sh
 npm install
