@@ -3,8 +3,6 @@ import { useRoute } from 'vue-router';
 import { ref } from 'vue';
 
 const route = useRoute();
-
-const currentRoute = ref(route.path)
 </script>
 
 <template>
@@ -14,8 +12,7 @@ const currentRoute = ref(route.path)
                 <h1>404</h1>
             </div>
             <div class="Description">
-                <h2>Page not found:</h2>
-                <p>"{{ currentRoute }}"</p>
+                <h2>Page not found</h2>
             </div>
         </div>
     </div>
@@ -47,31 +44,33 @@ const currentRoute = ref(route.path)
     align-items: center;
 
     width: 700px;
-    padding: 64px 10%;
+    padding: 32px;
     border-radius: 10px;
 
     background: #000000aa;
 }
 
-@media (min-width: 770px) {
-    .Content::before {
-        position: absolute;
-        right: 0;
-        bottom: 0;
+.Content::before {
+    position: absolute;
+    right: 0;
+    bottom: 0;
 
-        content: '';
+    content: '';
 
-        background: url('src/img/Miko.webp');
-        background-size: cover;
+    background: url('src/img/Miko.webp');
+    background-size: cover;
 
-        height: 60%;
-        width: 200px;
-    }
+    height: 70%;
+    width: 200px;
 }
 
 @media (max-width: 770px) {
     .Content {
         width: fit-content;
+    }
+
+    .Content::before{
+        display: none;
     }
 }
 
@@ -89,20 +88,10 @@ const currentRoute = ref(route.path)
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 24px;
+    font-size: 23px;
     text-align: center;
+    text-wrap: nowrap;
 
     color: #ffffff;
-}
-
-.Description p {
-    padding: 8px;
-    margin-top: 8px;
-
-    background: #00000055;
-
-    font-size: 16px;
-    text-align: center;
-    color: rgb(58, 206, 58);
 }
 </style>

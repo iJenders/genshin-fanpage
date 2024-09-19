@@ -125,6 +125,7 @@ footer::before {
 .FooterContent {
   width: 100%;
   padding: 24px;
+  padding-top: 64px;
 
   display: flex;
   justify-content: center;
@@ -134,15 +135,10 @@ footer::before {
   background: #000;
 }
 
-.FooterContent .Info {
-  max-width: 50%;
-  min-width: 300px;
-}
-
+.FooterContent .Info,
 .FooterContent .Links {
   max-width: 50%;
-  min-width: 300px;
-
+  min-width: 250px;
   display: flex;
   flex-direction: column;
 }
