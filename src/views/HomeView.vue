@@ -10,42 +10,42 @@ const route = useRouter();
 const regions = [
   {
     name: "Mondstadt",
-    motto: "La Nación de la Libertad",
+    motto: "The Nation of Freedom",
     imageUrl: "/src/img/Mondstadt.jpg",
     element: "anemo",
     elementColor: "#74c2a8",
   },
   {
     name: "Liyue",
-    motto: "La Nación de los Contratos",
+    motto: "The Nation of Contracts",
     imageUrl: "/src/img/Liyue.jpg",
     element: "geo",
     elementColor: "#fab632",
   },
   {
     name: "Inazuma",
-    motto: "La Nación de la Eternidad",
+    motto: "The Nation of Eternity",
     imageUrl: "/src/img/Inazuma.jpg",
     element: "electro",
     elementColor: "#af8ec1",
   },
   {
     name: "Sumeru",
-    motto: "La Nación de la Sabiduría",
+    motto: "The Nation of Wisdom",
     imageUrl: "/src/img/Sumeru.jpg",
     element: "dendro",
     elementColor: "#a4cc3c",
   },
   {
     name: "Fontaine",
-    motto: "...",
+    motto: "The Nation of Justice",
     imageUrl: "/src/img/Fontaine.jpg",
     element: "hydro",
     elementColor: "#4cc2f1",
   },
   {
     name: "Natlan",
-    motto: "Nación de la guerra",
+    motto: "The Nation of War",
     imageUrl: "/src/img/Natlan.jpg",
     element: "pyro",
     elementColor: "#ef7938",
@@ -59,7 +59,7 @@ const regions = [
     comingSoon: true
   }
 ]
-const videosId = ['rAIyiO_Awus', 'DoOPaMEwflU', 'uKr_9h79yf0']
+const videosId = ['dz0w5JRG3jY', 'DoOPaMEwflU', 'uKr_9h79yf0']
 
 const videos = ref([
   {
@@ -69,6 +69,7 @@ const videos = ref([
   }
 ]);
 const currentVideo = ref(0);
+const loadedVideos = ref(false);
 
 const currentVideoUrl = computed(() => videosId[currentVideo.value]);
 const currentVideoCssUrl = computed(() => `url(${videos.value[currentVideo.value].thumbnail})`);
@@ -94,13 +95,10 @@ const refreshVideos = () => {
         object.title = response.data.title;
         object.url = response.data.url
         object.thumbnail = `https://i3.ytimg.com/vi/${videoId}/maxresdefault.jpg`
-        if (index == 0) {
-          videos.value[0] = object;
-        } else {
-          videos.value.push(object);
-        }
+        videos.value[index] = object;
+        loadedVideos.value = true;
       }).catch(error => {
-        console.log(error);
+        loadedVideos.value = false;
       });
   });
 }
@@ -139,7 +137,7 @@ onMounted(() => {
           </swiper>
         </div>
       </div>
-      <div class="Videos">
+      <div class="Videos" v-if="loadedVideos">
         <div class="VideoInfo">
           <div class="Title">
             <p>{{ videos[currentVideo].title }}</p>
@@ -390,7 +388,6 @@ onMounted(() => {
 .VideoList .Video {
   position: relative;
 
-  width: 100%;
   border-radius: 5px;
 
   cursor: pointer;
@@ -495,11 +492,11 @@ onMounted(() => {
     padding: 20px;
   }
 
-  .Videos .VideoInfo {
+  .Videos .VideoList {
     width: 100%;
   }
 
-  .Videos .VideoList {
+  .Videos .VideoInfo {
     display: none;
   }
 }
