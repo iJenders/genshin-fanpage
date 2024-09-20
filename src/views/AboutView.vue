@@ -1,6 +1,8 @@
 <script setup>
 import FeatureCard from '@/components/FeatureCard.vue';
+import { onMounted } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
+import '@/helpers/particles.js'
 
 const features = [
   {
@@ -25,6 +27,122 @@ const features = [
     url: "/"
   },
 ]
+
+onMounted(() => {
+  window.particlesJS(
+    'features',
+    {
+      "particles": {
+        "number": {
+          "value": 500,
+          "density": {
+            "enable": false,
+            "value_area": 500
+          }
+        },
+        "color": {
+          "value": "#ffffff"
+        },
+        "shape": {
+          "type": "circle",
+          "stroke": {
+            "width": 0,
+            "color": "#000000"
+          },
+          "polygon": {
+            "nb_sides": 5
+          },
+          "image": {
+            "src": "img/github.svg",
+            "width": 100,
+            "height": 100
+          }
+        },
+        "opacity": {
+          "value": 1,
+          "random": true,
+          "anim": {
+            "enable": true,
+            "speed": 1,
+            "opacity_min": 0,
+            "sync": false
+          }
+        },
+        "size": {
+          "value": 3,
+          "random": true,
+          "anim": {
+            "enable": true,
+            "speed": 1,
+            "size_min": 0.3,
+            "sync": false
+          }
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 25,
+          "color": "#ffffff",
+          "opacity": 0.3,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 2,
+          "direction": "none",
+          "random": true,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false,
+          "attract": {
+            "enable": false,
+            "rotateX": 600,
+            "rotateY": 600
+          }
+        }
+      },
+      "interactivity": {
+        "detect_on": "window",
+        "events": {
+          "onhover": {
+            "enable": false,
+            "mode": "grab"
+          },
+          "onclick": {
+            "enable": false,
+            "mode": "push"
+          },
+          "resize": true
+        },
+        "modes": {
+          "grab": {
+            "distance": 70,
+            "line_linked": {
+              "opacity": 1
+            }
+          },
+          "bubble": {
+            "distance": 250,
+            "size": 0,
+            "duration": 2,
+            "opacity": 0,
+            "speed": 3
+          },
+          "repulse": {
+            "distance": 400,
+            "duration": 0.4
+          },
+          "push": {
+            "particles_nb": 4
+          },
+          "remove": {
+            "particles_nb": 2
+          }
+        }
+      },
+      "retina_detect": true
+    }
+  )
+})
 </script>
 
 <template>
@@ -38,7 +156,7 @@ const features = [
           Embark on an epic journey across the seven nations in Genshin Impact, a breathtaking open-world adventure.
         </p>
       </section>
-      <section class="Features">
+      <section class="Features" id="features">
         <h2>Key Features</h2>
         <div class="FeatureCardsContainer">
           <swiper @swiper="mySwiper" :slidesPerView="'auto'" :spaceBetween="30" :modules="modules"
@@ -168,5 +286,11 @@ const features = [
 <style>
 .FeatureCardsContainer .swiper-slide {
   width: fit-content;
+}
+
+.particles-js-canvas-el {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 </style>
