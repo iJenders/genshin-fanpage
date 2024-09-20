@@ -2,7 +2,10 @@
 import FeatureCard from '@/components/FeatureCard.vue';
 import { onMounted, onBeforeUnmount } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Autoplay } from 'swiper/modules'
 import '@/helpers/particles.js'
+
+const modules = [Autoplay];
 
 const features = [
   {
@@ -36,8 +39,8 @@ onMounted(() => {
         "number": {
           "value": 500,
           "density": {
-            "enable": false,
-            "value_area": 500
+            "enable": true,
+            "value_area": 600
           }
         },
         "color": {
@@ -163,8 +166,10 @@ onBeforeUnmount(() => {
       <section class="Features" id="features">
         <h2>Key Features</h2>
         <div class="FeatureCardsContainer">
-          <swiper @swiper="mySwiper" :slidesPerView="'auto'" :spaceBetween="30" :modules="modules"
-            class="FeatureCardsSwiper" :navigation="true">
+          <swiper :slidesPerView="'auto'" :spaceBetween="30" :modules="modules" :autoplay="{
+            delay: 2500,
+            disableOnInteraction: false,
+          }" class="FeatureCardsSwiper" :navigation="true">
             <swiper-slide v-for="(item, index) in features" :key="index">
               <FeatureCard :icon="item.icon" :title="item.title" :description="item.description"
                 :background="item.background" :url="item.url" />
