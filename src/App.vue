@@ -65,10 +65,10 @@ import { RouterLink, RouterView } from 'vue-router'
 
 @font-face {
   font-family: "ZhCn";
-  src: url('/src/fonts/zh-cn.ttf');
+  src:
+    url('/src/fonts/zh-cn.woff2') format('woff2'),
+    url('/src/fonts/zh-cn.woff') format('woff');
 }
-
-;
 
 * {
   margin: 0;
@@ -76,7 +76,7 @@ import { RouterLink, RouterView } from 'vue-router'
   box-sizing: border-box;
 }
 
-body{
+body {
   background: #000000;
 }
 
