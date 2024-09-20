@@ -17,15 +17,23 @@ const props = defineProps({
     background: {
         type: String,
         required: true
+    },
+    url: {
+        type: String,
+        required: true
     }
 });
+
+const openUrl = () =>{
+    window.open(props.url, "_blank");
+}
 
 const getBackgroundImgUrl = computed(() => `url('/src/img/${props.background}.jpg')`);
 const getBackgroundGifUrl = computed(() => `url('/src/img/${props.background}.gif')`);
 </script>
 
 <template>
-    <div class="FeatureCard">
+    <div class="FeatureCard" @click="openUrl">
         <div class="Background"></div>
         <div class="Icon">
             <i :class="props.icon"></i>
