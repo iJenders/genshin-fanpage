@@ -1,6 +1,6 @@
 <script setup>
 import FeatureCard from '@/components/FeatureCard.vue';
-import { onMounted } from 'vue';
+import { onMounted, onBeforeUnmount } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import '@/helpers/particles.js'
 
@@ -142,6 +142,10 @@ onMounted(() => {
       "retina_detect": true
     }
   )
+})
+onBeforeUnmount(() => {
+  window.pJSDom[0].pJS.fn.vendors.destroypJS();
+  window["pJSDom"] = [];
 })
 </script>
 
