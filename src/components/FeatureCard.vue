@@ -112,6 +112,10 @@ const getBackgroundGifUrl = computed(() => `url('/src/img/${props.background}.gi
     color: #ffffff;
 }
 
+.FeatureCard:hover i{
+    color: #ffc773;
+}
+
 .Title {
     font-family: "Roboto", sans-serif;
     font-size: 20px;

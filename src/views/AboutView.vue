@@ -150,7 +150,7 @@ onMounted(() => {
     <div class="AboutView">
       <section class="Landing">
         <h2>
-          Welcome to Teyvat
+          Welcome to <span>Teyvat</span>
         </h2>
         <p>
           Embark on an epic journey across the seven nations in Genshin Impact, a breathtaking open-world adventure.
@@ -222,6 +222,10 @@ onMounted(() => {
   text-align: center;
 
   color: #fff;
+}
+
+.Landing h2 span {
+  color: #ffc773;
 }
 
 .Landing p {
