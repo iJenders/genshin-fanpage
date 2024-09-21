@@ -177,6 +177,27 @@ onBeforeUnmount(() => {
           </swiper>
         </div>
       </section>
+      <section class="Download">
+        <div class="Content">
+          <div class="Description">
+            <h2>Join the Adventure</h2>
+            <p>Genshin Impact is more than just a game - it's a living, breathing world waiting to be discovered. Team
+              up
+              with friends, solve puzzles, and uncover the secrets of Teyvat.</p>
+            <a target="_blank" href="https://hoyo.link/euHgFDAL">
+              <p>Download Now</p>
+            </a>
+          </div>
+          <div class="Video">
+            <iframe src="https://www.youtube.com/embed/L-IgLbEmtDM"
+              title="Avance de Natlan de Genshin Impact - Hacia la luz de las llamas candentes #Natlan #Preview #Teaser"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+      </section>
     </div>
   </div>
 </template>
@@ -293,6 +314,162 @@ onBeforeUnmount(() => {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.Download {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  aspect-ratio: 16/10;
+  padding: 96px 0;
+}
+
+.Download::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background: url('/src/img/DownloadNowBackground.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.Download::after {
+  content: '';
+  position: absolute;
+  top: -64px;
+  left: 0;
+  z-index: 1;
+
+  width: 100%;
+  height: 128px;
+
+  backdrop-filter: blur(20px);
+  mask-image: linear-gradient(0deg, transparent, #000, transparent)
+}
+
+.Download .Content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 64px;
+
+  width: 100%;
+  padding: 64px 32px;
+
+  background: #000000cc;
+}
+
+.Download .Description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  flex: 1;
+
+  max-width: 700px;
+  min-width: 250px;
+}
+
+.Download .Description h2 {
+  width: 100%;
+
+  font-family: "Zhcn", system-ui;
+  font-size: 48px;
+  text-align: left;
+
+  color: #fff;
+}
+
+.Download .Description p {
+  width: 100%;
+  padding-top: 32px;
+
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  text-align: left;
+
+  color: #fff;
+}
+
+.Download .Description a {
+  position: relative;
+
+  margin-top: 64px;
+
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  text-decoration: none;
+
+  color: #fff;
+  transform: scale(1.2);
+}
+
+.Download .Description a p {
+  position: relative;
+  z-index: 2;
+  padding: 0;
+}
+
+.Download .Description a::before {
+  content: '';
+  position: absolute;
+  z-index: 1;
+
+  top: -15px;
+  left: -50px;
+
+  width: 250px;
+  height: 70px;
+
+  background: url('/src/img/Button.webp');
+  background-size: 100%;
+  background-position: center;
+}
+
+.Download .Video {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  max-width: 700px;
+  min-width: 250px;
+}
+
+.Download .Video iframe {
+  width: 100%;
+  aspect-ratio: 16/10;
+  border-radius: 20px;
+}
+
+@media (max-width: 720px) {
+
+  .Download::before {
+    background-position-x: 15%;
+  }
+
+  .Download .Description h2 {
+    font-size: 32px;
+  }
+
+  .Download .Description > p {
+    font-size: 16px;
+  }
+
+  .Download .Description a {
+    transform: scale(1);
+  }
 }
 </style>
 
