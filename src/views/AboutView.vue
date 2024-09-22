@@ -37,10 +37,10 @@ onMounted(() => {
     {
       "particles": {
         "number": {
-          "value": 500,
+          "value": 300,
           "density": {
             "enable": true,
-            "value_area": 600
+            "value_area": 1000
           }
         },
         "color": {
@@ -407,8 +407,6 @@ onBeforeUnmount(() => {
   position: relative;
 
   margin-top: 64px;
-
-  font-family: "Roboto", sans-serif;
   font-size: 20px;
   text-decoration: none;
 
@@ -420,6 +418,8 @@ onBeforeUnmount(() => {
   position: relative;
   z-index: 2;
   padding: 0;
+  font-size: 17px;
+  font-family: "Zhcn", system-ui;
 }
 
 .Download .Description a::before {
@@ -463,7 +463,7 @@ onBeforeUnmount(() => {
     font-size: 32px;
   }
 
-  .Download .Description > p {
+  .Download .Description>p {
     font-size: 16px;
   }
 
