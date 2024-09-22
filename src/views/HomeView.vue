@@ -160,13 +160,15 @@ onMounted(() => {
           </div>
         </div>
         <div class="Background"></div>
-        <div class="VideoPlayer" v-if="playingVideo" @click="togglePlayingVideo">
-          <iframe width="853" height="480" :src="`https://www.youtube.com/embed/${currentVideoUrl}`"
-            title="Miscelánea de Genshin Impact - Kinich: Todo tiene su recompensa #Kinich #GenshinImpact"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
+        <Teleport to="body">
+          <div class="VideoPlayer" v-if="playingVideo" @click="togglePlayingVideo">
+            <iframe width="853" height="480" :src="`https://www.youtube.com/embed/${currentVideoUrl}`"
+              title="Miscelánea de Genshin Impact - Kinich: Todo tiene su recompensa #Kinich #GenshinImpact"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+        </Teleport>
       </section>
     </div>
   </div>
@@ -467,11 +469,11 @@ onMounted(() => {
   filter: brightness(0.5);
 }
 
-.Videos .VideoPlayer {
+.VideoPlayer {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 4;
+  z-index: 10;
 
   display: flex;
   justify-content: center;
@@ -483,7 +485,7 @@ onMounted(() => {
   background: #000000aa;
 }
 
-.Videos .VideoPlayer iframe {
+.VideoPlayer iframe {
   width: 80%;
 }
 
