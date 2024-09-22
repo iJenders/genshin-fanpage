@@ -37,6 +37,13 @@ const getBackgroundGifUrl = computed(() => {
     }
     return '#000000';
 });
+const getBackgroundGifOpacity = computed(() => {
+    let opacity = 0;
+    if (hover.value) {
+        opacity = 1
+    }
+    return `opacity(${opacity}) brightness(0.4)`;
+})
 
 const toggleHover = (value) => {
     hover.value = value;
@@ -44,7 +51,7 @@ const toggleHover = (value) => {
 </script>
 
 <template>
-    <div class="FeatureCard" @click="openUrl" @mouseenter="toggleHover(true)" @mouseleave="toggleHover(false)">
+    <div class="FeatureCard" @click="openUrl" @pointerenter="toggleHover(true)" @pointerleave="toggleHover(false)">
         <div class="Background"></div>
         <div class="Icon">
             <i :class="props.icon"></i>
@@ -108,14 +115,10 @@ const toggleHover = (value) => {
     height: 100%;
 
     transition: 0.3s;
-    filter: opacity(0) brightness(0.4);
+    filter: v-bind(getBackgroundGifOpacity);
     background: v-bind(getBackgroundGifUrl);
     background-size: cover;
     background-position: center;
-}
-
-.FeatureCard:hover .Background::after {
-    filter: opacity(1) brightness(0.4);
 }
 
 .Icon i {
