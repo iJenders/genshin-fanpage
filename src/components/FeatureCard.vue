@@ -24,16 +24,27 @@ const props = defineProps({
     }
 });
 
-const openUrl = () =>{
+const openUrl = () => {
     window.open(props.url, "_blank");
 }
 
+const hover = ref(false);
+
 const getBackgroundImgUrl = computed(() => `url('/src/img/${props.background}.jpg')`);
-const getBackgroundGifUrl = computed(() => `url('/src/img/${props.background}.gif')`);
+const getBackgroundGifUrl = computed(() => {
+    if (hover.value) {
+        return `url('/src/img/${props.background}.gif')`;
+    }
+    return '#000000';
+});
+
+const toggleHover = (value) => {
+    hover.value = value;
+}
 </script>
 
 <template>
-    <div class="FeatureCard" @click="openUrl">
+    <div class="FeatureCard" @click="openUrl" @mouseenter="toggleHover(true)" @mouseleave="toggleHover(false)">
         <div class="Background"></div>
         <div class="Icon">
             <i :class="props.icon"></i>
@@ -112,7 +123,7 @@ const getBackgroundGifUrl = computed(() => `url('/src/img/${props.background}.gi
     color: #ffffff;
 }
 
-.FeatureCard:hover i{
+.FeatureCard:hover i {
     color: #ffc773;
 }
 
