@@ -3,11 +3,17 @@ import { createRouter, createWebHistory } from 'vue-router'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   scrollBehavior(to, from, savedPosition) {
+    // Save scroll position when using back/next navigation on browser
+    if (savedPosition) {
+      return savedPosition
+    }
+
     // Don't alter scroll while opening or closing videoPlayer on HomeView
     if (from.name == 'home' && (to.hash == '#video' || from.hash == '#video')) {
       return
     }
 
+    // Sets scroll to 0
     return { top: 0 }
   },
   routes: [
