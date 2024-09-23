@@ -338,7 +338,7 @@ onBeforeUnmount(() => {
   width: 100%;
   height: 100%;
 
-  background: url('/src/img/DownloadNowBackground.png');
+  background: url('/src/img/DownloadNowBackground.jpg');
   background-size: cover;
   background-position: center;
 }
