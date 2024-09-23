@@ -13,21 +13,24 @@ const features = [
     title: "Vast Open World",
     description: "Explore the diverse and breathtaking landscapes of Teyvat, from lush forests to snow-capped mountains.",
     background: "FeatureCard-World",
-    url: "https://act.hoyolab.com/ys/app/interactive-map/index.html"
+    url: "https://act.hoyolab.com/ys/app/interactive-map/index.html",
+    target: "_blank"
   },
   {
     icon: "fa-solid fa-bolt",
     title: "Elemental Combat",
     description: "Master the seven elements and engage in strategic, fast-paced battles against formidable foes.",
     background: "FeatureCard-Combat",
-    url: "/"
+    url: "/",
+    target: "_self"
   },
   {
     icon: "fa-solid fa-user-group",
     title: "Unique Characters",
     description: "Collect and play as a diverse cast of characters, each with their own elemental powers and backstories.",
     background: "FeatureCard-Characters",
-    url: "/"
+    url: "/characters",
+    target: "_self"
   },
 ]
 
@@ -172,7 +175,7 @@ onBeforeUnmount(() => {
           }" class="FeatureCardsSwiper" :navigation="true">
             <swiper-slide v-for="(item, index) in features" :key="index">
               <FeatureCard :icon="item.icon" :title="item.title" :description="item.description"
-                :background="item.background" :url="item.url" />
+                :background="item.background" :url="item.url" :target="item.target" />
             </swiper-slide>
           </swiper>
         </div>

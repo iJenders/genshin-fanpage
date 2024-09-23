@@ -21,11 +21,16 @@ const props = defineProps({
     url: {
         type: String,
         required: true
+    },
+    target: {
+        type: String,
+        required: true
     }
 });
 
 const openUrl = () => {
-    window.open(props.url, "_blank");
+    console.log(props.target)
+    window.open(props.url, props.target);
 }
 
 const hover = ref(false);
