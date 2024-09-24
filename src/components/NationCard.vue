@@ -25,14 +25,18 @@ const props = defineProps({
     comingSoon: {
         type: Boolean,
         required: false
+    },
+    active: {
+        type: Boolean,
+        required: false
     }
 });
 
-const translucentColor = ref(props.elementColor + "");
+const translucentColor = ref(props.elementColor);
 </script>
 
 <template>
-    <div class="NationCard">
+    <div class="NationCard" :class="props.active ? 'NationCardActive' : ''">
         <div class="BackgroundImg"
             :style="props.comingSoon ? 'filter: contrast(25%) brightness(50%) saturate(0%);' : ''">
             <img :src="props.imageUrl" :alt="props.name">
@@ -59,9 +63,10 @@ const translucentColor = ref(props.elementColor + "");
     width: 200px;
     height: 300px;
 
-    background-color: #ccc;
+    background-color: transparent;
 
     cursor: pointer;
+    border-radius: 8px;
 }
 
 .NationCard .BackgroundImg {
@@ -78,7 +83,8 @@ const translucentColor = ref(props.elementColor + "");
     transition: 0.2s;
 }
 
-.NationCard:hover .BackgroundImg {
+.NationCard:hover .BackgroundImg,
+.NationCardActive .BackgroundImg {
     filter: saturate(1);
     transform: scale(1);
 }
@@ -135,7 +141,8 @@ const translucentColor = ref(props.elementColor + "");
     font-style: italic;
 }
 
-.NationCard:hover .Title .Span {
+.NationCard:hover .Title .Span,
+.NationCardActive .Title .Span {
     top: 100%;
 }
 
@@ -154,7 +161,8 @@ const translucentColor = ref(props.elementColor + "");
     filter: opacity(1) drop-shadow(0 0 16px v-bind(translucentColor));
 }
 
-.NationCard:hover .Element {
+.NationCard:hover .Element,
+.NationCardActive .Element {
     filter: opacity(0);
     transform: translateY(-64px);
 }
