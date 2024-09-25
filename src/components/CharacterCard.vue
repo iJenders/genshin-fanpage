@@ -5,6 +5,10 @@ const props = defineProps({
     character: {
         type: Object,
         required: true,
+    },
+    fetch: {
+        type: Boolean,
+        required: false
     }
 });
 
@@ -23,7 +27,7 @@ const getGradient = ref(`linear-gradient(135deg, ${visionsColors[props.character
 
 const openLink = () => {
     window.open(
-        `https://genshin-impact.fandom.com/es/wiki/${props.character.name.replace(' ', '_')}`,
+        `https://genshin-impact.fandom.com/wiki/${props.character.name.replace(' ', '_')}`,
         '_blank'
     )
 }
@@ -43,7 +47,7 @@ const openLink = () => {
             <img :src="`/src/img/WeaponLogo-${props.character.weapon_type.toLowerCase()}.webp`"
                 :alt="props.character.weapon_type.toLowerCase()" class="Weapon">
             <div class="Rarity">
-                <img v-for="star in props.character.rarity" :key="item" src="/src/img/Star.png"
+                <img v-for="(star, index) in props.character.rarity" :key="index" src="/src/img/Star.png"
                     :alt="props.character.rarity">
             </div>
         </div>

@@ -82,7 +82,7 @@ body {
 
 header {
   position: fixed;
-  z-index: 10;
+  z-index: 11;
 
   width: 100%;
   backdrop-filter: blur(5px) brightness(0.95);

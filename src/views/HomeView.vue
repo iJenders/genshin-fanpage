@@ -56,7 +56,6 @@ const regions = [
     imageUrl: "/src/img/NationCards-ComingSoon.jpg",
     element: "cryo",
     elementColor: "#9fd6e3",
-    comingSoon: true
   }
 ]
 const videosId = ['dz0w5JRG3jY', 'DoOPaMEwflU', 'uKr_9h79yf0']
@@ -129,10 +128,10 @@ onMounted(() => {
           <span>Seven nations to explore</span>
         </div>
         <div class="SliderContainer">
-          <swiper :slidesPerView="'auto'" :spaceBetween="30" :modules="modules" class="mySwiper">
+          <swiper :slidesPerView="'auto'" :spaceBetween="30" class="mySwiper">
             <swiper-slide v-for="(item, index) in regions" :key="index">
-              <nation-card :name="item.name" :motto="item.motto" :image-url="item.imageUrl" :element="item.element"
-                :element-color="item.elementColor" :coming-soon="item.comingSoon" />
+              <nation-card :href="`/regions/#${index}`" :name="item.name" :motto="item.motto" :image-url="item.imageUrl"
+                :element="item.element" :element-color="item.elementColor" />
             </swiper-slide>
           </swiper>
         </div>

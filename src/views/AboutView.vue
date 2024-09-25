@@ -21,8 +21,8 @@ const features = [
     title: "Elemental Combat",
     description: "Master the seven elements and engage in strategic, fast-paced battles against formidable foes.",
     background: "FeatureCard-Combat",
-    url: "/",
-    target: "_self"
+    url: "https://genshin-impact.fandom.com/wiki/Combat",
+    target: "_blank"
   },
   {
     icon: "fa-solid fa-user-group",

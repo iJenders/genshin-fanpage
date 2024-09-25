@@ -22,10 +22,6 @@ const props = defineProps({
         type: String,
         required: true
     },
-    comingSoon: {
-        type: Boolean,
-        required: false
-    },
     active: {
         type: Boolean,
         required: false
@@ -36,9 +32,8 @@ const translucentColor = ref(props.elementColor);
 </script>
 
 <template>
-    <div class="NationCard" :class="props.active ? 'NationCardActive' : ''">
-        <div class="BackgroundImg"
-            :style="props.comingSoon ? 'filter: contrast(25%) brightness(50%) saturate(0%);' : ''">
+    <a class="NationCard" :class="props.active ? 'NationCardActive' : ''">
+        <div class="BackgroundImg">
             <img :src="props.imageUrl" :alt="props.name">
         </div>
         <div class="Title">
@@ -52,7 +47,7 @@ const translucentColor = ref(props.elementColor);
         <div class="Element">
             <img :src="`/src/img/ElementLogo-${props.element}.webp`" :alt="props.element" width="80">
         </div>
-    </div>
+    </a>
 </template>
 
 <style scoped>
@@ -60,6 +55,7 @@ const translucentColor = ref(props.elementColor);
     position: relative;
     overflow: hidden;
 
+    display: inline-block;
     width: 200px;
     height: 300px;
 

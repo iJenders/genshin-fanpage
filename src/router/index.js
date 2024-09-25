@@ -13,6 +13,10 @@ const router = createRouter({
       return
     }
 
+    if (from.name == 'regions' && to.name == 'regions') {
+      return
+    }
+
     // Sets scroll to 0
     return { top: 0 }
   },
